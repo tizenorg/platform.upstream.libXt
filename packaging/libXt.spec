@@ -1,5 +1,5 @@
 Name:           libXt
-Version:        1.1.2
+Version:        1.1.3
 Release:        2
 License:        MIT
 Summary:        X
