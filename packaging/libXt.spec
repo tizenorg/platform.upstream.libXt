@@ -31,18 +31,15 @@ X.Org X11 libXt development package
 %build
 # FIXME: Work around pointer aliasing warnings from compiler for now
 export CFLAGS="${CFLAGS} %{optflags} -fno-strict-aliasing"
-%reconfigure --disable-static \
-	       LDFLAGS="${LDFLAGS} -Wl,--hash-style=both -Wl,--as-needed" \
+%configure --disable-static \
            --with-appdefaultdir=/etc/X11/app-defaults \
            --with-xfile-search-path="/usr/lib/X11/%L/%T/%N%S:/usr/lib/X11/%l/%T/%N%S:/usr/lib/X11/%T/%N%S:/etc/X11/%L/%T/%N%C%S:/etc/X11/%l/%T/%N%C%S:/etc/X11/%T/%N%C%S:/etc/X11/%L/%T/%N%S:/etc/X11/%l/%T/%N%S:/etc/X11/%T/%N%S"
 
 make %{?_smp_mflags}
 
 %install
-
 %make_install
 mkdir -p -m 0755 %{buildroot}%{_datadir}/X11/app-defaults
-rm -f %{buildroot}%{_libdir}/*.la
 
 %remove_docs
 
@@ -51,7 +48,7 @@ rm -f %{buildroot}%{_libdir}/*.la
 
 %files
 %defattr(-,root,root,-)
-%doc COPYING ChangeLog
+%doc COPYING 
 %{_libdir}/libXt.so.6
 %{_libdir}/libXt.so.6.0.0
 %dir %{_datadir}/X11/app-defaults
