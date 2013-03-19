@@ -2,9 +2,9 @@ Name:           libXt
 Version:        1.1.3
 Release:        2
 License:        MIT
-Summary:        X
+Summary:        X Toolkit Intrinsics library
 Url:            http://www.x.org
-Group:          System Environment/Libraries
+Group:          Graphics/X Window System
 
 Source:         %{name}-%{version}.tar.bz2
 
@@ -17,10 +17,9 @@ BuildRequires:  pkgconfig(xproto)
 X.Org X11 libXt runtime library
 
 %package devel
-Summary:        X
+Summary:        X Toolkit Intrinsics library
 Group:          Development/Libraries
 Requires:       %{name} = %{version}
-Provides:       libxt-devel
 
 %description devel
 X.Org X11 libXt development package
@@ -44,18 +43,18 @@ mkdir -p -m 0755 %{buildroot}%{_datadir}/X11/app-defaults
 %remove_docs
 
 %post -p /sbin/ldconfig
+
 %postun -p /sbin/ldconfig
 
 %files
 %defattr(-,root,root,-)
-%doc COPYING 
+%license COPYING 
 %{_libdir}/libXt.so.6
 %{_libdir}/libXt.so.6.0.0
 %dir %{_datadir}/X11/app-defaults
 
 %files devel
 %defattr(-,root,root,-)
-#%{_datadir}/doc/%{name}
 %{_includedir}/X11/CallbackI.h
 %{_includedir}/X11/Composite.h
 %{_includedir}/X11/CompositeP.h
@@ -91,4 +90,3 @@ mkdir -p -m 0755 %{buildroot}%{_datadir}/X11/app-defaults
 %{_includedir}/X11/Xtos.h
 %{_libdir}/libXt.so
 %{_libdir}/pkgconfig/xt.pc
-#%{_mandir}/man3/*.3*
