@@ -7,6 +7,7 @@ Url:            http://www.x.org
 Group:          Graphics/X Window System
 
 Source:         %{name}-%{version}.tar.bz2
+Source1001: 	libXt.manifest
 
 BuildRequires:  pkgconfig(sm)
 BuildRequires:  pkgconfig(x11)
@@ -26,6 +27,7 @@ X.Org X11 libXt development package
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 # FIXME: Work around pointer aliasing warnings from compiler for now
@@ -47,6 +49,7 @@ mkdir -p -m 0755 %{buildroot}%{_datadir}/X11/app-defaults
 %postun -p /sbin/ldconfig
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %license COPYING 
 %{_libdir}/libXt.so.6
@@ -54,6 +57,7 @@ mkdir -p -m 0755 %{buildroot}%{_datadir}/X11/app-defaults
 %dir %{_datadir}/X11/app-defaults
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_includedir}/X11/CallbackI.h
 %{_includedir}/X11/Composite.h
