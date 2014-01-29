@@ -1,3 +1,5 @@
+%bcond_with x
+
 Name:           libXt
 Version:        1.1.3
 Release:        2
@@ -13,6 +15,10 @@ BuildRequires:  pkgconfig(sm)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xorg-macros)
 BuildRequires:  pkgconfig(xproto)
+
+%if !%{with x}
+ExclusiveArch:
+%endif
 
 %description
 X.Org X11 libXt runtime library
@@ -51,7 +57,7 @@ mkdir -p -m 0755 %{buildroot}%{_datadir}/X11/app-defaults
 %files
 %manifest %{name}.manifest
 %defattr(-,root,root,-)
-%license COPYING 
+%license COPYING
 %{_libdir}/libXt.so.6
 %{_libdir}/libXt.so.6.0.0
 %dir %{_datadir}/X11/app-defaults
