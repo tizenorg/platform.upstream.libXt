@@ -1,7 +1,7 @@
 %bcond_with x
 
 Name:           libXt
-Version:        1.1.3
+Version:        1.1.4
 Release:        2
 License:        MIT
 Summary:        X Toolkit Intrinsics library
@@ -38,7 +38,7 @@ cp %{SOURCE1001} .
 %build
 # FIXME: Work around pointer aliasing warnings from compiler for now
 export CFLAGS="${CFLAGS} %{optflags} -fno-strict-aliasing"
-%configure --disable-static \
+%autogen --disable-static \
            --with-appdefaultdir=/etc/X11/app-defaults \
            --with-xfile-search-path="/usr/lib/X11/%L/%T/%N%S:/usr/lib/X11/%l/%T/%N%S:/usr/lib/X11/%T/%N%S:/etc/X11/%L/%T/%N%C%S:/etc/X11/%l/%T/%N%C%S:/etc/X11/%T/%N%C%S:/etc/X11/%L/%T/%N%S:/etc/X11/%l/%T/%N%S:/etc/X11/%T/%N%S"
 
